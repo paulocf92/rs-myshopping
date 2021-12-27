@@ -13,7 +13,8 @@ export function FormBox() {
   async function handleProductAdd() {
     firestore()
       .collection('products')
-      .add({ description, quantity, done: false })
+      .doc('my-custom-id')
+      .set({ description, quantity, done: false })
       .then(() => Alert.alert('Produto adicionado com sucesso!'))
       .catch(error => console.error(error));
   }
