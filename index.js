@@ -1,5 +1,13 @@
 import 'react-native-gesture-handler';
+import '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
 import { registerRootComponent } from 'expo';
+
+if (__DEV__) {
+  firestore().useEmulator('192.168.100.14', 8080);
+}
+
+const db = firestore();
 
 import App from './App';
 
