@@ -13,7 +13,6 @@ export function SignIn() {
 
   async function handleSignInAnonymously() {
     const { user } = await auth().signInAnonymously();
-    console.log({ user });
   }
 
   function handleCreateUserAccount() {
@@ -40,7 +39,7 @@ export function SignIn() {
   function handleSignInWithEmailAndPassword() {
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then(({ user }) => console.log({ user }))
+      .then(({ user }) => {})
       .catch(error => {
         console.log(error.code);
 
