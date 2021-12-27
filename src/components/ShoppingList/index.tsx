@@ -8,7 +8,7 @@ import { Product, ProductProps } from '../Product';
 export function ShoppingList() {
   const [products, setProducts] = useState<ProductProps[]>([]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     firestore()
       .collection('products')
       .get()
@@ -23,19 +23,6 @@ export function ShoppingList() {
         setProducts(data);
       })
       .catch(error => console.error(error));
-  }, []); */
-
-  useEffect(() => {
-    firestore()
-      .collection('products')
-      .doc('XWxAcsgrPVAB64i5UC5X')
-      .get()
-      .then(response =>
-        console.log({
-          id: response.id,
-          ...response.data(),
-        })
-      );
   }, []);
 
   return (
