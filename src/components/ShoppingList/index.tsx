@@ -9,20 +9,18 @@ export function ShoppingList() {
   const [products, setProducts] = useState<ProductProps[]>([]);
 
   useEffect(() => {
-    firestore()
+    const unsubscribe = firestore()
       .collection('products')
-      .get()
-      .then(response => {
-        const data = response.docs.map(doc => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        }) as ProductProps[];
+      .onSnapshot(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        })) as ProductProps[];
 
         setProducts(data);
-      })
-      .catch(error => console.error(error));
+
+        return () => unsubscribe();
+      });
   }, []);
 
   return (
